@@ -1,18 +1,16 @@
-##Laravel Passport
+## Laravel Passport
 
 
-####Laravel V-5.8
-####Passport V-7.5.1
+#### Laravel V-5.8
+#### Passport V-7.5.1
 
 
-##Installation
-```javascript
+## Installation
 
-composer require laravel/passport:7.5.1 
-php artisan migrate
-php artisan passport:install
+```` composer require laravel/passport:7.5.1 ````
+```` php artisan migrate ````
+```` php artisan passport:install ````
 
-````
 
 
 ## open config/app.php file and add service provider.
