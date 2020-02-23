@@ -26,46 +26,12 @@ Laravel\Passport\PassportServiceProvider::class,
 
 ````
 
-## Step 2: Run Migration and Install
-
-```javascript 
-
-php artisan migrate
-php artisan passport:install
-
-
-````
-
-
 ## Step 3: Passport Configuration  app/User.php
 
 ```javascript 
 
-<?php
-namespace App;
 use Laravel\Passport\HasApiTokens;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-class User extends Authenticatable
-{
-  use HasApiTokens, Notifiable;
-/**
-* The attributes that are mass assignable.
-*
-* @var array
-*/
-protected $fillable = [
-'name', 'email', 'password',
-];
-/**
-* The attributes that should be hidden for arrays.
-*
-* @var array
-*/
-protected $hidden = [
-'password', 'remember_token',
-];
-}
+
 
 ````
 
@@ -76,32 +42,17 @@ protected $hidden = [
 
 ```javascript 
 
-<?php
-namespace App\Providers;
 use Laravel\Passport\Passport; 
-use Illuminate\Support\Facades\Gate; 
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-class AuthServiceProvider extends ServiceProvider 
-{ 
-    /** 
-     * The policy mappings for the application. 
-     * 
-     * @var array 
-     */ 
+
     protected $policies = [ 
         'App\Model' => 'App\Policies\ModelPolicy', 
     ];
-/** 
-     * Register any authentication / authorization services. 
-     * 
-     * @return void 
-     */ 
+
     public function boot() 
     { 
         $this->registerPolicies(); 
         Passport::routes(); 
     } 
-}
 
 ````
 
@@ -109,35 +60,19 @@ class AuthServiceProvider extends ServiceProvider
 
 ```javascript 
 
-<?php
-return [
-'guards' => [ 
-        'web' => [ 
-            'driver' => 'session', 
-            'provider' => 'users', 
-        ], 
+
         'api' => [ 
             'driver' => 'passport', 
             'provider' => 'users', 
         ], 
-    ],
+
 
 ````
+
 ## Step 5: Create API Route
 
-```javascript 
+```javascript
 
-<?php
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 Route::post('login', 'API\UserController@login');
 Route::post('register', 'API\UserController@register');
 Route::group(['middleware' => 'auth:api'], function(){
@@ -213,8 +148,4 @@ return response()->json(['success'=>$success], $this-> successStatus);
 
 
 ````
-## Step 7: Run 
 
-```javascript 
-
-php artisan serve
