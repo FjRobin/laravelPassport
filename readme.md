@@ -8,7 +8,9 @@
 ## Installation
 
 ```` composer require laravel/passport:7.5.1 ````
+
 ```` php artisan migrate ````
+
 ```` php artisan passport:install ````
 
 
