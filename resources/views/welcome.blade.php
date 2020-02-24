@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel Passport/RESTfull API
+                    Laravel Passport
                 </div>
             </div>
         </div>
